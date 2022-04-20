@@ -1,1 +1,1 @@
-web: gunicorn r2items.wsgi.py
+web: gunicorn r2items.wsgi
