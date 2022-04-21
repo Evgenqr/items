@@ -74,9 +74,11 @@ WSGI_APPLICATION = 'r2items.wsgi.application'
 # }
 
 
-DATABASES = {
-    'default': dj_database_url.config()
-}
+DATABASES = {'default': dj_database_url.parse('postgres://uemppysjbaizcm:b3034d882d235e18553ac601966c6bba1805a5b6378d99a4de000013346e177f@ec2-52-54-212-232.compute-1.amazonaws.com:5432/d1o1moq8d9psi4')}
+
+# DATABASES = {
+#     'default': dj_database_url.config()
+# }
 
 # DATABASES = {
 #     'default': {
