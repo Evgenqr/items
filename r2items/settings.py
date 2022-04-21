@@ -74,7 +74,11 @@ WSGI_APPLICATION = 'r2items.wsgi.application'
 # }
 
 
-DATABASES = {'default': dj_database_url.parse('postgres://uemppysjbaizcm:b3034d882d235e18553ac601966c6bba1805a5b6378d99a4de000013346e177f@ec2-52-54-212-232.compute-1.amazonaws.com:5432/d1o1moq8d9psi4')}
+DATABASES = {
+    'default': dj_database_url.parse(
+        'postgres://fmoiwlzmqamtsx:ec3d1d8709bd082661df8c59f31f5683f5d02e2c87fbd1126cc6d304e22212a0@ec2-3-229-252-6.compute-1.amazonaws.com:5432/dcvj2nlqbm0kul'
+        )
+    }
 
 # DATABASES = {
 #     'default': dj_database_url.config()
@@ -161,5 +165,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ]
 
 
-prod_db  =  dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
+# prod_db  =  dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(prod_db)
