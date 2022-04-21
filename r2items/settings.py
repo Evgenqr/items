@@ -2,6 +2,8 @@ import os
 from pathlib import Path
 from pickle import TRUE
 import dj_database_url
+import psycopg2
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -62,27 +64,33 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'r2items.wsgi.application'
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'r2db',
-#         'USER': 'r2dbadmin',
-#         'PASSWORD': 'admin',
-#         'HOST': 'localhost',
-#         'PORT': '5432'
-#     }
-# }
-
-
 DATABASES = {
-    'default': dj_database_url.parse(
-        'postgres://fmoiwlzmqamtsx:ec3d1d8709bd082661df8c59f31f5683f5d02e2c87fbd1126cc6d304e22212a0@ec2-3-229-252-6.compute-1.amazonaws.com:5432/dcvj2nlqbm0kul'
-        )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'r2db',
+        'USER': 'r2dbadmin',
+        'PASSWORD': 'admin',
     }
+}
+# DATABASES = {
+#     'default': dj_database_url.parse(
+#         'postgres://fmoiwlzmqamtsx:ec3d1d8709bd082661df8c59f31f5683f5d02e2c87fbd1126cc6d304e22212a0@ec2-3-229-252-6.compute-1.amazonaws.com:5432/dcvj2nlqbm0kul'
+#         )
+#     }
+
+DATABASE_URL = os.environ['postgres://uemppysjbaizcm:b3034d882d235e18553ac601966c6bba1805a5b6378d99a4de000013346e177f@ec2-52-54-212-232.compute-1.amazonaws.com:5432/d1o1moq8d9psi4']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # DATABASES = {
-#     'default': dj_database_url.config()
-# }
+#     'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+#     }
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+# prod_db  =  dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(prod_db)
+
 
 # DATABASES = {
 #     'default': {
@@ -165,5 +173,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ]
 
 
-# prod_db  =  dj_database_url.config(conn_max_age=500)
-# DATABASES['default'].update(prod_db)
+
